@@ -1,0 +1,30 @@
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <nav class="col-12 col-md footer__left">
+                <ul>
+                    {{ range .Site.Data.meta.verticals }}
+                    <li><a href="{{ .url }}">{{ .name }}</a></li>
+                    {{ end }}
+                </ul>
+            </nav>
+            <nav class="col-12 col-md footer__right">
+                <ul>
+                    {{ range .Site.Data.meta.social }}
+                    <li><a href="{{ .url }}">{{ .name }}</a></li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col footer__separator"></div>
+        </div>
+        <div class="row footer__bottom align-items-center">
+            <div class="col-12 col-md-auto footer__copyright">© {{ now.Format "2006"}} Aerokube Software</div>
+            <div class="col-12 col-md footer__terms">
+                <!--<a class="mr-4" href="/terms">Terms of service</a>-->
+                <!--<a href="/policy">Privacy policy</a>-->
+            </div>
+        </div>
+    </div>
+</footer>

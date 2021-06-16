@@ -1,0 +1,11 @@
+<div class="container features">
+    <div class="row">
+        {{ range .Site.Data.meta.features }}
+        <div class="col-12 col-md-3 mb-4 mb-md-0 features__feature">
+            <img src="images/features/{{ .icon }}.svg" alt="{{ .title }}">
+            <p class="features__feature-title">{{ .title }}</p>
+            <p class="features__feature-description">{{ replace .description "\n" "<br/>" | safeHTML }}</p>
+        </div>
+        {{ end }}
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="videos">
+    <div class="videos__title-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>Aerokube is a small team of software developers</h3>
+                </div>
+            </div>
+            <div class="row videos__content">
+                <div class="col-12 col-md-5">
+                    <p>
+                        Aerokube is a small team of software developers. We are creating large scale software testing infrastructure for more than 6 years.
+                    </p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p>
+                        Our experience in building large Selenium clusters allows to create scalable Selenium installation meeting your needs. We also contribute
+                        to open-source Selenium tools development.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="videos__half-container">
+        <div class="container videos__video-wrapper">
+            <div class="row">
+                {{ range .Site.Data.meta.videos }}
+                <div class="col-12 col-md-4 mb-4 videos__video">
+                    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ .image }}" alt="video 1">
+                    </a>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>

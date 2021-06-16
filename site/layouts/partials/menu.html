@@ -1,0 +1,13 @@
+<div class="header__menu">
+    <label for="menu" class="header__menu-button">
+        <img src="images/nav.svg" alt="menu sandwich">
+    </label>
+    <input id="menu" type="checkbox">
+    <div class="header__menu-wrapper">
+        <ul class="header__menu-container">
+            {{ range .Site.Data.meta.navigation }}
+            <li><a href="{{ .url }}">{{ .name }}</a></li>
+            {{ end }}
+        </ul>
+    </div>
+</div>

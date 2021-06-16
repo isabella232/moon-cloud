@@ -1,0 +1,23 @@
+<div class="container projects">
+    <div class="row">
+        <div class="col">
+            <h2 class="projects__title">Projects</h2>
+        </div>
+    </div>
+    <div class="row projects__projects">
+        {{ range .Site.Data.meta.projects }}
+        <div class="col-12 col-md-4 mb-4">
+            <div class="projects__project">
+                <h3 class="projects__project-title">{{ .title }}</h3>
+                <p class="projects__project-description">
+                    {{ .description }}
+                </p>
+                <ul class="projects__project-links">
+                    <li><a href="{{ .source }}">Source</a></li>
+                    <li><a href="{{ .documentation }}">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>

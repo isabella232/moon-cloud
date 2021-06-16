@@ -1,0 +1,166 @@
+{
+  "features": [
+    {
+      "title": "In-house cluster",
+      "description": "Runs on any hardware \nand in the cloud",
+      "icon": "cluster"
+    },
+    {
+      "title": "Unlimited browsers",
+      "description": "Run as many browsers \nas your cluster allows",
+      "icon": "browsers"
+    },
+    {
+      "title": "Playwright supported",
+      "description": "Run your Playwright tests \nin parallel",
+      "icon": "openshift"
+    },
+    {
+      "title": "Flexible pricing",
+      "description": "$5 per parallel session \nper month",
+      "icon": "pricing"
+    }
+  ],
+  "social": [
+    {
+      "name": "Docs",
+      "url": "https://aerokube.com/moon/latest"
+    },
+    {
+      "name": "Github",
+      "url": "https://github.com/aerokube/moon"
+    },
+    {
+      "name": "Telegram",
+      "url": "https://t.me/aerokube_moon"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/aerokube"
+    },
+    {
+      "name": "Youtube",
+      "url": "https://www.youtube.com/channel/UC9HvE3FNfTvftzpvXi9c69g"
+    },
+    {
+      "name": "Mail us",
+      "url": "mailto:support@aerokube.com"
+    }
+  ],
+  "navigation": [
+    {
+      "name": "Pricing",
+      "url": "/moon/#pricing"
+    },
+    {
+      "name": "Documentation",
+      "url": "/moon/#articles"
+    }
+  ],
+  "verticals": [
+    {
+      "name": "Aerokube",
+      "url": "https://aerokube.com/"
+    },
+    {
+      "name": "Browsers",
+      "url": "https://browsers.aerokube.com/"
+    },
+    {
+      "name": "Moon",
+      "url": "https://aerokube.com/moon/"
+    },
+    {
+      "name": "Selenoid",
+      "url": "https://aerokube.com/selenoid/"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Selenoid",
+      "description": "A lightning fast Selenium protocol implementation running browsers in Docker containers",
+      "source": "https://github.com/aerokube/selenoid",
+      "documentation": "https://aerokube.com/selenoid/latest/"
+    },
+    {
+      "title": "Selenoid UI",
+      "description": "Cool graphical user interface for Selenoid mainly needed for debugging your Selenium tests",
+      "source": "https://github.com/aerokube/selenoid-ui",
+      "documentation": "https://aerokube.com/selenoid-ui/latest/"
+    },
+    {
+      "title": "CM",
+      "description": "A fully automated installation tool for Selenoid and Selenoid UI doing all the work for you",
+      "source": "https://github.com/aerokube/cm",
+      "documentation": "https://aerokube.com/cm/latest/"
+    },
+    {
+      "title": "Ggr",
+      "description": "A completely stateless and lightweight load balancer used to create big Selenium clusters",
+      "source": "https://github.com/aerokube/ggr",
+      "documentation": "https://aerokube.com/ggr/latest/"
+    },
+    {
+      "title": "Ggr UI",
+      "description": "An additional component used to show all sessions running in Selenium cluster in the same Selenoid UI",
+      "source": "https://github.com/aerokube/ggr-ui",
+      "documentation": "https://aerokube.com/ggr-ui/latest/"
+    }
+  ],
+  "articles": [
+    {
+      "title": "Selenium Grid 4: Do you really need it?",
+      "description": "This article describes what are the main components of Selenium Grid 4 and how Moon differs from it.",
+      "url": "https://aandryashin.medium.com/selenium-grid-4-do-you-really-need-it-ab03366625b0"
+    },
+    {
+      "title": "Selenium: Lightning Fast Mobile Emulation in Kubernetes",
+      "description": "This article describes how mobile emulation in Chrome browser can save you a lot of time and money.",
+      "url": "https://aandryashin.medium.com/selenium-lightning-fast-mobile-emulation-in-kubernetes-e41140cd6f54"
+    },
+    {
+      "title": "Browser Automation: How an efficient Selenium Cloud Platform should look like in 2020",
+      "description": "This article gives more details about Moon Cloud solution.",
+      "url": "https://aandryashin.medium.com/browser-automation-how-an-efficient-selenium-cloud-platform-should-look-like-in-2020-540d2c9ec62f"
+    },
+    {
+      "title": "Moon: the Swiss Army Knife for Browser Automation",
+      "description": "This article demonstrates how to run Puppeteer tests in parallel with Moon",
+      "url": "https://aandryashin.medium.com/moon-the-swiss-army-knife-for-browser-automation-7a1382c0702b"
+    },
+    {
+      "title": "Playwright: Launching Cross-Browser Automation to the Stars",
+      "description": "This article demonstrates how to run parallel Playwright tests with Moon.",
+      "url": "https://medium.com/@aandryashin/playwright-launching-cross-browser-automation-to-the-stars-4a9cca8f0df0"
+    },
+    {
+      "title": "Next Mission to Moon",
+      "description": "This article demonstrates new Moon features: Chrome Developer Tools support, manual testing and so on.",
+      "url": "https://medium.com/@aandryashin/next-mission-to-moon-cross-browser-selenium-testing-in-kubernetes-e2721144591a"
+    },
+    {
+      "title": "Selenium: Exploring the Moon",
+      "description": "This article describes Moon architecture, why it is stateless and some  advanced stuff.",
+      "url": "https://medium.com/@aandryashin/selenium-exploring-the-moon-b7402936cafe"
+    },
+    {
+      "title": "Selenium: Back to the Moon",
+      "description": "In this article we provide motivation for creating Moon and demonstrate first features.",
+      "url": "https://medium.com/@aandryashin/selenium-back-to-the-moon-6ea73f1657cc"
+    }
+  ],
+  "videos": [
+    {
+      "image": "images/videos/video1.png",
+      "url": "https://youtube.com"
+    },
+    {
+      "image": "images/videos/video2.png",
+      "url": "https://youtube.com"
+    },
+    {
+      "image": "images/videos/video3.png",
+      "url": "https://youtube.com"
+    }
+  ]
+}

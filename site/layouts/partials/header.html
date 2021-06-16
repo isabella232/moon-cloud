@@ -1,0 +1,20 @@
+<header class="container">
+    <div class="row header align-items-center">
+        <div class="col-auto">
+            <a href="/" class="header__logo">
+                <img src="images/aerokube_logo.svg" alt="logo" class="header__logo-image">
+                <span class="header__logo-title">Moon</span>
+            </a>
+        </div>
+        <nav class="d-none d-sm-block col">
+            <ul class="header__links">
+                {{ range .Site.Data.meta.social }}
+                <li><a href="{{ .url }}">{{ .name }}</a></li>
+                {{ end }}
+            </ul>
+        </nav>
+        <nav class="d-block d-sm-none col">
+            {{ partial "menu" . }}
+        </nav>
+    </div>
+</header>
