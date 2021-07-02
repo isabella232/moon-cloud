@@ -1,51 +1,39 @@
 <div class="container pricing">
     <div class="row">
-        <div class="col">
+        <div class="col text-md-center">
             <h2 class="pricing__title" id="pricing">Pricing</h2>
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-8 offset-md-2 pricing__definition">
+            <p>
+                Because of pay as you go model Moon Cloud pricing model differs from traditional cloud platforms.
+                At the end of each month you pay regular cloud platform bill plus a fixed commission of 25% for cluster maintenance.
+                Below you can get an idea of approximate Moon Cloud pricing depending on maximum number of parallel browsers and daily usage:
+            </p>
+        </div>
+        <div class="col-12 col-md-8 offset-md-2">
             <form id="range" class="pricing-range">
-                <div class="d-none d-sm-block pricing-range__range">
-                    <div class="pricing-range__range-line">
-                        <div class="lol"></div>
-                    </div>
+                <div class="pricing-range__range-container">
                 </div>
                 <div class="pricing-range__config">
-                    <label class="d-flex justify-content-between align-items-center d-sm-none pricing-range__range-label">
-                        <span>Parallel sessions: </span>
-                        <span class="select-wrapper">
-                        <select name="range" class="select pricing-range__range-select"></select>
-                    </span>
-                    </label>
+                    <div class="pricing-range__selects"></div>
                     <label class="d-flex justify-content-between align-items-center d-sm-inline pricing-range__duration-label">
-                        <span class="pricing-range__duration-label-text">Duration: </span>
+                        <span class="pricing-range__duration-label-text">Cloud platform: </span>
                         <span class="select-wrapper">
                             <select name="duration" class="select pricing-range__duration"></select>
                         </span>
                     </label>
                     <label class="d-flex justify-content-between align-items-center pricing-range__price-label">
                         <span class="pricing-range__price-label-text">Your price:</span>
-                        <span class="pricing-range__toggle-container">
-                            <span class="pricing-range__odometer-container">
-                                <span class="pricing-range__price-label-currency">$</span><span id="price-odometer"></span>
-                            </span>
-                            <a href="mailto:support@aerokube.com" class="pricing-range__contact-us-container">Contact us</a>
+                        <span class="pricing-range__odometer-container">
+                            <span class="pricing-range__price-label-currency">$</span><span id="price-odometer"></span>
                         </span>
                         <input id="price-input" type="hidden" name="price" value="0">
                     </label>
                 </div>
-                <p>To buy a license key - contact us: <a href="mailto:sales@aerokube.com" title="Contact email">sales@aerokube.com</a></p>
-                <!--<div class="d-flex d-sm-block pricing-range__credentials">-->
-                    <!--<input class="input" type="text" placeholder="Company name" name="company">-->
-                    <!--<input class="input" type="email" placeholder="Your e-mail" name="email">-->
-                    <!--<input class="button" type="submit" value="Buy">-->
-                <!--</div>-->
+                <p class="pricing__contact-us">To buy a license key - contact us: <a href="mailto:sales@aerokube.com" title="Contact email">sales@aerokube.com</a></p>
             </form>
-        </div>
-        <div class="col-12 col-md-3">
-            {{ partial "browsers" . }}
         </div>
     </div>
 </div>

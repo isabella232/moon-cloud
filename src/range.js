@@ -1,32 +1,35 @@
 const defaultParams = {
   blockName: "pricing-range",
-  sessions: [10, 20, 50, 100, 500, 1000, "∞"],
-  defaultSession: 50,
-  defaultMonth: "6",
-  months: [
+  ranges: [
     {
-      title: "1 month",
+      name: "sessions",
+      title: "Parallel Sessions",
+      values: [10, 20, 50, 100, 500, 1000],
+      default: 50
+    },
+    {
+      name: "hours",
+      title: "Hours per week",
+      values: [2, 4, 8, 16, 24, 40],
+      default: 8
+    }
+  ],
+  platforms: [
+    {
+      title: "Amazon Web Services",
       value: 1
     },
     {
-      title: "2 months",
+      title: "Google Cloud",
       value: 2
     },
     {
-      title: "3 months",
+      title: "Microsoft Azure",
       value: 3
     },
-    {
-      title: "6 months",
-      value: 6
-    },
-    {
-      title: "12 months",
-      value: 12
-    }
   ],
-  price: 5,
-  title: "Parallel Sessions"
+  defaultPlatform: 0,
+  price: 5
 };
 
 class Range {
@@ -34,52 +37,28 @@ class Range {
     if (!selector) {
       throw new Error("No target element specified");
     }
+
     this.params = Object.assign({}, defaultParams, params);
     this.blockName = params.blockName;
     this.selector = selector;
-    this.rangeContainer = null;
-    this.months = this.params.months;
-    this.values = this.params.sessions;
-    this.month = this.params.defaultMonth;
-    this.session = this.params.defaultSession;
+    this.rangeContainer = selector.querySelector(".pricing-range__range-container");
+    this.selectContainer = selector.querySelector(".pricing-range__selects");
+    this.platforms = this.params.platforms;
     this.price = this.params.price;
     this.value = null;
-    this.contactUsMode = false;
+    this.ranges = [];
 
-    this.valueItems = new Map();
-
-    this.createRange();
+    this.createRanges();
     this.createValue();
     this.createDuration();
 
-    this.setSession(this.session);
+    // this.setSession(this.session);
 
     this.setValue();
   }
 
-  toggleContactUs(contactUsVisible = true) {
-    if (contactUsVisible === this.contactUsMode) {
-      return;
-    }
-
-    this.contactUsMode = contactUsVisible;
-
-    if (contactUsVisible) {
-      this.toggleContainer.classList.add("pricing-range__toggle-container_contact-us");
-    } else {
-      this.toggleContainer.classList.remove("pricing-range__toggle-container_contact-us");
-    }
-  }
-
   setValue() {
-    if (this.session === "∞") {
-      this.toggleContactUs();
-      this.priceInput.value = "infinity";
-
-      return;
-    }
-
-    this.toggleContactUs(false);
+    // calculate value
     this.value = this.price * Number(this.month) * this.session;
     if (this.odometer) {
       this.odometer.update(this.value);
@@ -88,53 +67,91 @@ class Range {
     this.priceInput.value = this.value;
   }
 
-  createRange() {
-    this.rangeContainer = this.selector.querySelector(".pricing-range__range");
-    this.rangeSelect = this.selector.querySelector(".pricing-range__range-select");
-    this.rangeLine = this.rangeContainer.querySelector(".pricing-range__range-line");
-    this.toggleContainer = document.querySelector(".pricing-range__toggle-container");
+  createRanges() {
+    this.ranges = this.params.ranges.map((r) => this.createRange(r));
+  }
 
-    this.values.forEach((value) => {
+  createRange(range) {
+    const container = document.createElement("div");
+    container.classList.add("d-none", "d-sm-block", "pricing-range__range");
+
+    const line = document.createElement("div");
+    line.classList.add("pricing-range__range-line");
+    container.appendChild(line);
+
+    const lol = document.createElement("div");
+    lol.classList.add("lol");
+    line.appendChild(lol);
+
+    const items = new Map();
+    const select = this.createRangeSelect(range);
+
+    range.values.forEach((value) => {
       const valueMapItem = this.createRangeItem(value);
-      this.valueItems.set(value, valueMapItem);
+      items.set(value, valueMapItem);
 
-      this.rangeLine.appendChild(valueMapItem.container);
+      line.appendChild(valueMapItem.container);
     });
 
     this.title = document.createElement("p");
     this.title.classList.add("range-item-container");
     this.title.classList.add("pricing-range__title");
-    this.title.innerText = this.params.title;
+    this.title.innerText = range.title;
 
-    this.rangeLine.appendChild(this.title);
+    line.appendChild(this.title);
+    this.rangeContainer.appendChild(container);
 
-    this.createRangeSelect();
+    return {
+      container,
+      select,
+      items,
+      value: range.default,
+      title: range.title
+    };
   }
 
-  createRangeSelect() {
-    this.rangeSelect = this.selector.querySelector(".pricing-range__range-select");
+  createRangeSelect(range) {
+    const label = document.createElement("label");
+    label.classList.add("d-flex", "justify-content-between", "align-items-center", "d-sm-none", "pricing-range__range-label");
 
-    this.values.forEach((value) => {
+    const title = document.createElement("span");
+    title.innerText = range.title + ": ";
+    label.appendChild(title);
+
+    const wrapper = document.createElement("span");
+    wrapper.classList.add("select-wrapper");
+
+    const select = document.createElement("select");
+    select.classList.add("select", "pricing-range__range-select");
+
+    wrapper.appendChild(select);
+    label.appendChild(wrapper);
+
+    this.selectContainer.appendChild(label);
+
+    range.values.forEach((value) => {
       const element = document.createElement("option");
       element.setAttribute("value", value);
       element.innerText = value;
-      this.rangeSelect.appendChild(element);
+      select.appendChild(element);
     });
 
-    this.rangeSelect.addEventListener("change", (event) => {
+    select.addEventListener("change", (event) => {
       const value = event.target.value;
 
-      this.setSession(value);
+      this.setRange(select, value);
       this.setValue();
     });
 
-    this.setSession(this.session);
+    // this.setSession(this.session);
+
+    return select;
   }
 
   createDuration() {
     this.durationContainer = this.selector.querySelector(".pricing-range__duration");
 
-    this.months.forEach((month) => {
+    this.platforms.forEach((month) => {
       const element = document.createElement("option");
       element.setAttribute("value", month.value);
       element.innerText = month.title;
@@ -162,6 +179,10 @@ class Range {
         options[i].setAttribute("selected", "");
       }
     }
+  }
+
+  setRange(range, value) {
+
   }
 
   setSession(session) {
@@ -218,9 +239,9 @@ class Range {
     this.odometer = new window.Odometer({
       el: this.valueContainer,
       value: this.value,
-      numberLength: 5,
+      numberLength: 3,
       theme: "minimal",
-      format: "(,ddddd)"
+      format: "(,ddd)"
     });
   }
 }

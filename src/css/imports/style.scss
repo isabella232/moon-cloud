@@ -295,6 +295,33 @@ nav li {
     }
 }
 
+.frameworks {
+    margin: 40px auto 80px;
+
+    &__items {
+        list-style-type: none;
+        margin-bottom: 40px;
+        padding: 0;
+
+        & li {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        border: 2px solid rgba(10, 34, 94, 0.19);
+        border-radius: 4px;
+        height: 108px;
+        padding: 37px 28px;
+
+        & img {
+            width: 100%;
+        }
+    }
+}
+
 .feedback {
     &__title {
         display: block;
@@ -481,8 +508,8 @@ nav li {
 
 .browsers {
     list-style-type: none;
-    letter-spacing: 83px;
-    line-height: 95px;
+    letter-spacing: 80px;
+    line-height: 64px;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -490,16 +517,75 @@ nav li {
     & li {
         display: inline-block;
         letter-spacing: normal;
+        margin-bottom: 40px;
     }
 
     & img {
-        width: 48px;
-        height: 48px;
+        width: 64px;
+        height: 64px;
+    }
+}
+
+.howitworks {
+    & h2 {
+        margin-bottom: 40px;
+    }
+
+    &__background {
+        background-color: #F5F6F7;
+        padding: 40px 0;
+    }
+
+    &__illustration {
+        height: 237px;
+        background-image: url('#{$prefix}/images/howitworks-desktop.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-bottom: 40px;
+    }
+
+    &__steps {
+        counter-reset: section;
+        list-style-type: none;
+        padding: 0 0 0 64px;
+    }
+
+    &__step {
+        background-color: white;
+        border: 2px solid rgba(23, 84, 237, 0.2);
+        border-radius: 4px;
+        position: relative;
+        padding: 16px;
+        color: rgba(10, 34, 94, 1);
+        font-size: 18px;
+        margin-bottom: 16px;
+
+        &::before {
+            position: absolute;
+            left: -64px;
+            top: 0px;
+            vertical-align: middle;
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 46px;
+            font-weight: 700;
+            color: rgba(158, 165, 183, 1);
+            counter-increment: section;
+            content: counter(section);
+        }
     }
 }
 
 .pricing {
-    margin-top: 100px;
+    margin-top: 40px;
+
+    &__title {
+        margin-bottom: 24px;
+    }
+
+    &__contact-us {
+        font-size: 1.333rem;
+    }
 }
 
 .pricing-range {
@@ -577,7 +663,8 @@ nav li {
 
     &__config {
         color: #0A225E;
-        font-size: 1.33rem;
+        font-size: 1rem;
+        font-weight: 500;
         display: flex;
     }
 
@@ -746,6 +833,21 @@ nav li {
             &.input, &.button {
                 width: 100%
             }
+        }
+    }
+
+    .features {
+        padding-bottom: 0;
+    }
+
+    .browsers {
+        letter-spacing: 60px;
+    }
+
+    .howitworks {
+        &__illustration {
+            background-image: url('#{$prefix}/images/howitworks-mobile.png');
+            height: 437px;
         }
     }
 }
