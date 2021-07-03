@@ -5,15 +5,16 @@ const defaultParams = {
       name: "sessions",
       title: "Parallel Sessions",
       values: [10, 20, 50, 100, 500, 1000],
-      default: 50
+      value: 50
     },
     {
       name: "hours",
       title: "Hours per week",
       values: [2, 4, 8, 16, 24, 40],
-      default: 8
+      value: 8
     }
   ],
+  // price coefficient for platform
   platforms: [
     {
       title: "Amazon Web Services",
@@ -28,7 +29,7 @@ const defaultParams = {
       value: 3
     },
   ],
-  defaultPlatform: 0,
+  defaultPlatform: 1,
   price: 5
 };
 
@@ -44,6 +45,7 @@ class Range {
     this.rangeContainer = selector.querySelector(".pricing-range__range-container");
     this.selectContainer = selector.querySelector(".pricing-range__selects");
     this.platforms = this.params.platforms;
+    this.platform = this.params.defaultPlatform;
     this.price = this.params.price;
     this.value = null;
     this.ranges = [];
@@ -59,7 +61,8 @@ class Range {
 
   setValue() {
     // calculate value
-    this.value = this.price * Number(this.month) * this.session;
+    const ranges = this.ranges.map((r) => r.value).reduce((acc, r) => acc * r);
+    this.value = 1.25 * (170 + 0.192 * ranges * Number(this.platform));
     if (this.odometer) {
       this.odometer.update(this.value);
     }
@@ -68,7 +71,16 @@ class Range {
   }
 
   createRanges() {
-    this.ranges = this.params.ranges.map((r) => this.createRange(r));
+    this.ranges = this.params.ranges.map(this.createRange, this);
+
+    this.ranges.forEach((range) => {
+      this.createRangeEventListener(range);
+      this.setRange(range);
+    });
+  }
+
+  setRanges() {
+    this.ranges.forEach(this.setRange, this);
   }
 
   createRange(range) {
@@ -87,25 +99,25 @@ class Range {
     const select = this.createRangeSelect(range);
 
     range.values.forEach((value) => {
-      const valueMapItem = this.createRangeItem(value);
+      const valueMapItem = this.createRangeItem(range, value);
       items.set(value, valueMapItem);
 
       line.appendChild(valueMapItem.container);
     });
 
-    this.title = document.createElement("p");
-    this.title.classList.add("range-item-container");
-    this.title.classList.add("pricing-range__title");
-    this.title.innerText = range.title;
+    const title = document.createElement("p");
+    title.classList.add("range-item-container");
+    title.classList.add("pricing-range__title");
+    title.innerText = range.title;
 
-    line.appendChild(this.title);
+    line.appendChild(title);
     this.rangeContainer.appendChild(container);
 
     return {
       container,
       select,
       items,
-      value: range.default,
+      value: range.value,
       title: range.title
     };
   }
@@ -136,16 +148,21 @@ class Range {
       select.appendChild(element);
     });
 
-    select.addEventListener("change", (event) => {
-      const value = event.target.value;
+    return select;
+  }
 
-      this.setRange(select, value);
+  createRangeEventListener(range) {
+    range.select.addEventListener("change", (event) => {
+      this.setRange(range, event.target.value);
       this.setValue();
     });
 
-    // this.setSession(this.session);
-
-    return select;
+    for (const [value, item] of range.items) {
+      item.container.addEventListener("click", () => {
+        this.setRange(range, value);
+        this.setValue();
+      });
+    }
   }
 
   createDuration() {
@@ -159,10 +176,9 @@ class Range {
     });
 
     this.durationContainer.addEventListener("change", (event) => {
-      this.month = event.target.value;
+      this.platform = event.target.value;
 
       this.setDuration();
-
       this.setValue();
     });
 
@@ -173,7 +189,7 @@ class Range {
     const options = this.durationContainer.options;
 
     for (let i = 0; i < options.length; i++) {
-      if (options[i].value !== this.month) {
+      if (options[i].value !== this.platform) {
         options[i].removeAttribute("selected");
       } else {
         options[i].setAttribute("selected", "");
@@ -182,24 +198,22 @@ class Range {
   }
 
   setRange(range, value) {
+    if (value) {
+      range.value = value;
+    }
 
-  }
-
-  setSession(session) {
-    this.session = session;
-
-    for (const [key, item] of this.valueItems) {
-      if (key === session) {
+    for (const [key, item] of range.items) {
+      if (key === range.value) {
         item.container.classList.add("range-item-container_selected");
       } else {
         item.container.classList.remove("range-item-container_selected");
       }
     }
 
-    const options = this.rangeSelect.options;
+    const options = range.select.options;
 
     for (let i = 0; i < options.length; i++) {
-      if (options[i].value !== this.session.toString()) {
+      if (options[i].value !== range.value) {
         options[i].removeAttribute("selected");
       } else {
         options[i].setAttribute("selected", "");
@@ -207,7 +221,7 @@ class Range {
     }
   }
 
-  createRangeItem(value) {
+  createRangeItem(range, value) {
     const item = document.createElement("div");
     const valueText = document.createElement("p");
     const circle = document.createElement("div");
@@ -218,12 +232,6 @@ class Range {
 
     item.appendChild(valueText);
     item.appendChild(circle);
-
-    item.addEventListener("click", () => {
-
-      this.setSession(value);
-      this.setValue();
-    });
 
     return {
       container: item,
@@ -239,9 +247,9 @@ class Range {
     this.odometer = new window.Odometer({
       el: this.valueContainer,
       value: this.value,
-      numberLength: 3,
+      numberLength: 5,
       theme: "minimal",
-      format: "(,ddd)"
+      format: "(,ddddd)"
     });
   }
 }
