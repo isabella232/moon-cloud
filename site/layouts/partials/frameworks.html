@@ -2,10 +2,15 @@
     <div class="row">
         <div class="col-12">
             <ul class="row frameworks__items">
-                <li class="col-12 col-sm-3"><div class="frameworks__item"><img src="images/frameworks/selenium.png" alt="selenium"></div></li>
-                <li class="col-12 col-sm-3"><div class="frameworks__item"><img src="images/frameworks/playwright.png" alt="playwright"></div></li>
-                <li class="col-12 col-sm-3"><div class="frameworks__item"><img src="images/frameworks/cypress.png" alt="cypress"></div></li>
-                <li class="col-12 col-sm-3"><div class="frameworks__item"><img src="images/frameworks/puppeteer.png" alt="puppeteer"></div></li>
+                {{ range .Site.Data.meta.frameworks }}
+                <li class="col-12 col-sm-3">
+                    <a href="{{ .url }}" target="_blank">
+                        <div class="frameworks__item">
+                            <img src="images/frameworks/{{ .icon }}" alt="{{ .alt }}">
+                        </div>
+                    </a>
+                </li>
+                {{ end }}
             </ul>
         </div>
         <div class="col-12">

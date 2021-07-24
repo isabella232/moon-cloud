@@ -16,10 +16,6 @@ a, a:hover {
     color: inherit;
 }
 
-a[href] {
-    border-bottom: 1px dashed;
-}
-
 .input, .button, .select {
     appearance: none;
     font-size: 1rem;
@@ -133,8 +129,8 @@ nav li {
         }
 
         &-title {
-            font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-            font-weight: bold;
+            font-weight: 400;
+            font-size: 18px;
             color: rgba(0, 0, 0, 0.8);
             vertical-align: middle;
             margin-left: 8px;

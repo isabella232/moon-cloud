@@ -21,6 +21,57 @@
       "icon": "pricing"
     }
   ],
+  "browsers": [
+    {
+      "alt": "firefox",
+      "icon": "firefox.svg"
+    },{
+      "alt": "chrome",
+      "icon": "chrome.svg"
+    },
+    {
+      "alt": "opera",
+      "icon": "opera.svg"
+    },
+    {
+      "alt": "edge",
+      "icon": "edge.svg"
+    },
+    {
+      "alt": "safari",
+      "icon": "safari.svg"
+    },
+    {
+      "alt": "edge",
+      "icon": "edge.svg"
+    },
+    {
+      "alt": "electron",
+      "icon": "electron.svg"
+    }
+  ],
+  "frameworks": [
+    {
+      "alt": "selenium",
+      "url": "https://selenium.dev",
+      "icon": "selenium.png"
+    },
+    {
+      "alt": "playwright",
+      "url": "https://playwright.dev",
+      "icon": "playwright.png"
+    },
+    {
+      "alt": "cypress",
+      "url": "https://cypress.io",
+      "icon": "cypress.png"
+    },
+    {
+      "alt": "puppeteer",
+      "url": "https://pptr.dev",
+      "icon": "puppeteer.png"
+    }
+  ],
   "social": [
     {
       "name": "Docs",
