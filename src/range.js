@@ -33,6 +33,22 @@ const defaultParams = {
   price: 5
 };
 
+const price = {
+  maintenanceCommission: 1.25,
+  platforms: {
+    permanent: {
+      1: 170, // AWS
+      2: 186, // Google Cloud
+      3: 163 // M$ Azure
+    },
+    variable: {
+      1: 0.192,
+      2: 0.134,
+      3: 0.166
+    },
+  }
+};
+
 class Range {
   constructor(selector, params = {}) {
     if (!selector) {
@@ -54,15 +70,16 @@ class Range {
     this.createValue();
     this.createDuration();
 
-    // this.setSession(this.session);
-
     this.setValue();
   }
 
   setValue() {
-    // calculate value
-    const ranges = this.ranges.map((r) => r.value).reduce((acc, r) => acc * r);
-    this.value = 1.25 * (170 + 0.192 * ranges * Number(this.platform));
+    const weeklyUsage = this.ranges.map((r) => r.value).reduce((acc, r) => acc * r); // Hours * parallel sessions
+    const monthlyUsage = 4 * weeklyUsage;
+    const vmMonthlyUsage = monthlyUsage / 5; // 1 VM == 5 browsers
+    const permanentPayment = price.platforms.permanent[this.platform]; // Load balancer + nodes with Moon
+    const usageCost = price.platforms.variable[this.platform]; // Browser nodes with auto-scaling
+    this.value = price.maintenanceCommission * (permanentPayment + usageCost * vmMonthlyUsage);
     if (this.odometer) {
       this.odometer.update(this.value);
     }
@@ -166,16 +183,16 @@ class Range {
   }
 
   createDuration() {
-    this.durationContainer = this.selector.querySelector(".pricing-range__duration");
+    this.platformContainer = this.selector.querySelector(".pricing-range__duration");
 
     this.platforms.forEach((month) => {
       const element = document.createElement("option");
       element.setAttribute("value", month.value);
       element.innerText = month.title;
-      this.durationContainer.appendChild(element);
+      this.platformContainer.appendChild(element);
     });
 
-    this.durationContainer.addEventListener("change", (event) => {
+    this.platformContainer.addEventListener("change", (event) => {
       this.platform = event.target.value;
 
       this.setDuration();
@@ -186,7 +203,7 @@ class Range {
   }
 
   setDuration() {
-    const options = this.durationContainer.options;
+    const options = this.platformContainer.options;
 
     for (let i = 0; i < options.length; i++) {
       if (options[i].value !== this.platform) {

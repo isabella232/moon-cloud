@@ -1,5 +1,5 @@
 <ul class="browsers">
     {{ range .Site.Data.meta.browsers }}
-    <li><img src="images/browsers/{{ .icon }}" alt="{{ .alt }}"></li>
+    <li><img src="images/browsers/{{ .icon }}" title="{{ .title }}" alt="{{ .alt }}"></li>
     {{ end }}
 </ul>

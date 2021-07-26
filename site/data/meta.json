@@ -2,7 +2,7 @@
   "features": [
     {
       "title": "Runs in your cloud",
-      "description": "Choose platrofm \nand region near you",
+      "description": "Choose platform \nand region near you",
       "icon": "cluster"
     },
     {
@@ -16,37 +16,39 @@
       "icon": "openshift"
     },
     {
-      "title": "Play as you go",
-      "description": "Monthly costs depends \non your real usage",
+      "title": "Pay as you go",
+      "description": "Monthly cost depends \non your real usage",
       "icon": "pricing"
     }
   ],
   "browsers": [
     {
       "alt": "firefox",
+      "title": "Firefox",
       "icon": "firefox.svg"
     },{
       "alt": "chrome",
+      "title": "Chrome",
       "icon": "chrome.svg"
     },
     {
       "alt": "opera",
+      "title": "Opera",
       "icon": "opera.svg"
     },
     {
       "alt": "edge",
+      "title": "Microsoft Edge",
       "icon": "edge.svg"
     },
     {
       "alt": "safari",
+      "title": "Safari (WebKit)",
       "icon": "safari.svg"
     },
     {
-      "alt": "edge",
-      "icon": "edge.svg"
-    },
-    {
       "alt": "electron",
+      "title": "Electron",
       "icon": "electron.svg"
     }
   ],
@@ -112,10 +114,6 @@
     {
       "name": "Aerokube",
       "url": "https://aerokube.com/"
-    },
-    {
-      "name": "Browsers",
-      "url": "https://browsers.aerokube.com/"
     },
     {
       "name": "Moon",

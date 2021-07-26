@@ -312,6 +312,10 @@ nav li {
         height: 108px;
         padding: 37px 28px;
 
+        &:hover {
+            border-color:  rgba(23, 84, 237, 0.2);
+        }
+
         & img {
             width: 100%;
         }
@@ -568,6 +572,10 @@ nav li {
             color: rgba(158, 165, 183, 1);
             counter-increment: section;
             content: counter(section);
+        }
+
+        a {
+            text-decoration: underline;
         }
     }
 }

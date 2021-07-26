@@ -7,7 +7,7 @@ import Snackbar from "./snackbar";
 
 document.addEventListener("DOMContentLoaded", () => {
   const range = new Range(document.getElementById("range"));
-  const apiEndpoint = process.env.NODE_ENV === "production" ? "https://moon.aerokube.com/license" : "http://localhost:8080/license";
+  const apiEndpoint = process.env.NODE_ENV === "production" ? "https://moon.aerokube.com/trial" : "http://localhost:8080/trial";
   const reset = function() {
     grecaptcha.reset();
   };
@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
   window.onSubmit = function() {
     $.ajax({
       url: apiEndpoint,
-      data: $("form#license-form").serialize(),
+      data: $("form#trial-form").serialize(),
       success: function() {
-        success("An evaluation license key was sent to your email address");
+        success("Done! We will contact you shortly.");
         reset();
       },
       error: function(xhr) {
-        failure(`Failed to request evaluation license key: ${xhr.responseText}`);
+        failure(`Failed to request Moon Cloud trial: ${xhr.responseText}`);
         reset();
       }
     });

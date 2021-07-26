@@ -1,7 +1,7 @@
 baseurl = "/"
 languageCode = "en-us"
 languageLang = "en"
-title = "Aerokube Moon | A Cross Browser Selenium and Playwright Solution Running in Kubernetes or Openshift Cluster"
+title = "Moon Cloud | A Cross Browser Testing Platform supporting Selenium, Cypress, Playwright and Puppeteer"
 
 enableRobotsTXT = true
 
@@ -12,4 +12,4 @@ enableRobotsTXT = true
 disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
 [params]
-description = "A cross browser and mobile application testing platform. Fully compatible with Selenium Webdriver and Playwright. Automated and live testing. Kubernetes and Openshift clusters supported. Runs on your own hardware or in any popular cloud platform: Google Cloud, Amazon Web Services, DigitalOcean, Microsoft Azure and so on."
+description = "A cross browser online testing platform. Fully compatible with Selenium Webdriver, Cypress, Playwright and Puppeteer. Automated and live testing. Runs in your desired cloud platform: Google Cloud, Amazon Web Services or Microsoft Azure. Runs in the region near you."

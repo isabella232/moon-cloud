@@ -1,6 +1,6 @@
 {
-  "short_name": "Aerokube Moon",
-  "name": "Aerokube Moon | An Enterprise Selenium Solution Running in Kubernetes",
+  "short_name": "Moon Cloud",
+  "name": "Moon Cloud | A Cross Browser Testing Platform supporting Selenium, Cypress, Playwright and Puppeteer",
   "icons": [
     {
       "src": "/images/android-chrome-192x192.png",
