@@ -129,8 +129,8 @@ nav li {
         }
 
         &-title {
-            font-weight: 400;
-            font-size: 18px;
+            font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+            font-weight: bold;
             color: rgba(0, 0, 0, 0.8);
             vertical-align: middle;
             margin-left: 8px;
@@ -148,6 +148,11 @@ nav li {
         & ul {
             letter-spacing: 28px;
         }
+
+        a[href] {
+            border-bottom: 1px dashed;
+        }
+
     }
 
     &__menu {
@@ -564,7 +569,7 @@ nav li {
         &::before {
             position: absolute;
             left: -64px;
-            top: 0px;
+            top: 0;
             vertical-align: middle;
             font-family: 'Ubuntu Mono', monospace;
             font-size: 46px;
@@ -574,8 +579,8 @@ nav li {
             content: counter(section);
         }
 
-        a {
-            text-decoration: underline;
+        a[href] {
+            border-bottom: 1px dashed;
         }
     }
 }
