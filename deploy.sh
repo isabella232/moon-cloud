@@ -8,8 +8,8 @@ git clone -b gh-pages https://${GITHUB_TOKEN}@github.com/aerokube/moon-cloud.git
 cd ${CLONE_DIR}
 git config user.name "${GITHUB_REPOSITORY}"
 git config user.email "aerokube@aerokube.github.com"
-git rm ${CLONE_DIR}/main.*.css
-git rm ${CLONE_DIR}/main.*.js
+git rm --ignore-unmatch ${CLONE_DIR}/main.*.css
+git rm --ignore-unmatch ${CLONE_DIR}/main.*.js
 cp -R ${WD}/dist/* ${CLONE_DIR}
 git add --all
 git commit -am "Updated website"
