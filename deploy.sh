@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -e
+
 WD=$(pwd)
-CLONE_DIR="${GITHUB_WORKSPACE}/website"
+CLONE_DIR="${GITHUB_WORKSPACE}/moon-cloud"
 git clone -b gh-pages https://${GITHUB_TOKEN}@github.com/aerokube/moon-cloud.git ${CLONE_DIR}
 cd ${CLONE_DIR}
 git config user.name "${GITHUB_REPOSITORY}"
