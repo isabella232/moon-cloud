@@ -24,7 +24,7 @@ module.exports = merge(common, {
           {
             loader: "sass-loader",
             options: {
-              additionalData: "$prefix: \"" + (process.env.NODE_ENV === "production" ? "/moon" : "") + "\";"
+              additionalData: "$prefix: \"" + (process.env.NODE_ENV === "production" ? "/moon-cloud" : "") + "\";"
             }
           }]
       }
