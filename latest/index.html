@@ -544,7 +544,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div class="details">
 <span id="author" class="author">Aerokube Software</span><br>
 <span id="revnumber">version latest,</span>
-<span id="revdate">2021-10-23</span>
+<span id="revdate">2021-10-24</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -728,7 +728,29 @@ This documentation is a quick overview of basic features of dedicated <a href="h
 </ul>
 </div>
 <div class="paragraph">
-<p>Container runtime is always configured with <a href="https://en.wikipedia.org/wiki/Autoscaling">auto-scaling</a> enabled. How big your cluster can grow is configurable. We are usually setting reasonable default values for maximum cluster size preventing you from paying too much.</p>
+<p>Container runtime is always configured with <a href="https://en.wikipedia.org/wiki/Autoscaling">auto-scaling</a> enabled. How big your cluster can grow is configurable. We are usually setting reasonable default values for maximum cluster size preventing you from paying too much. By default, Moon Cloud cluster works as follows.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>When no tests are running Moon Cloud remains in <strong>idle mode</strong> which looks like this:</p>
+<div class="paragraph">
+<p><span class="image"><img src="img/auto-scaling-idle.png" alt="sessions-list"></span></p>
+</div>
+<div class="paragraph">
+<p>Moon itself is launched on two constantly running Kubernetes nodes. Each node is a small cloud virtual machines connected to Kubernetes cluster. These nodes are distributed across two separate datacenters in the same geographic region to provide fault-tolerant solution.</p>
+</div>
+</li>
+<li>
+<p>When you <strong>start running your tests</strong> Moon Cloud looks like this:</p>
+<div class="paragraph">
+<p><span class="image"><img src="img/auto-scaling-running.png" alt="sessions-list"></span></p>
+</div>
+<div class="paragraph">
+<p>Depending on the number of requested browsers cloud platform <strong>automatically starts</strong> one or several virtual machines. These virtual machines then join the Kubernetes cluster. These nodes have more CPUs and memory and are used for launching browsers on them. The maximum number of such nodes is limited to not spend too much money if you accidentally request too many browsers. Unused nodes are automatically removed by the cloud platform after some time (usually 10-15 minutes). Starting 1 node takes approximately 1 minute, so if you launch your tests when Moon Cloud is in idle mode it can take <strong>up to 1 minute to get first browsers started</strong>. If you need first browsers to start fast, upon your request we can configure Kubernetes to always have one or several browser nodes running. This is more expensive but first sessions are starting faster.</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
@@ -1905,7 +1927,7 @@ Files should be saved to <code>/home/selenium/Downloads</code>.
 <div id="footer">
 <div id="footer-text">
 Version latest<br>
-Last updated 2021-10-23 06:46:13 UTC
+Last updated 2021-10-24 12:35:37 UTC
 </div>
 </div>
 <!-- Global site tag (gtag.js) - Google Analytics -->
